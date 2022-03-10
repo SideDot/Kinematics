@@ -20,12 +20,11 @@ def specRound(n):
     return int(n * mltplr) / mltplr
 def checkRealCond(x):
     z = x >= 0
-    print("[["+ x + "]]")
-    if z is False:
-        print("====Error: Please enter positive numbers only.====")
-        return False
-    else:
+    print("[[" + x + "]]")
+    if z is True:
         return True
+    else:
+        return False
 def speed():
     t = float(input("Insert time value (s): "))
     s = float(input("Insert distance value (m): "))
@@ -33,7 +32,7 @@ def speed():
         v = s / t
         print("The speed is: ~ " + str(specRound(v)) + " m/s")
     else: 
-        print("\nError: Please enter positive numbers only.")
+        print("====Error: Time Value Negative.====")
 def distance():
     v = float(input("Insert speed value (m/s): "))
     t = float(input("Insert time value (s): "))
@@ -41,7 +40,7 @@ def distance():
         s = v * t
         print("The distance traveled is: ~ " + str(specRound(s)) + " m")
     else: 
-        print("\nError: Please enter positive numbers only.")
+        print("====Error: Time Value Negative.====")
 def time():
     s = float(input("Insert distance value (m): "))
     v = float(input("Insert speed value (m/s): "))
@@ -49,7 +48,7 @@ def time():
         t = s / v
         print("The time passed is: ~ " + str(specRound(t)) + " s")
     else: 
-        print("time must be positive decimal")
+        print("====Error: Time Value Negative.====")
      
 def Rspeed():
     s1 = float(input("Insert first distance value (m): "))
@@ -60,23 +59,29 @@ def Rspeed():
     if checkRealCond(cond):
         v = (sf - s1) / (tf - t1)
         print("The speed is: ~ " + str(specRound(v)) + " m/s")
+    else: 
+        print("====Error: Time Value Negative.====")
 def Rdistance():
     v1 = float(input("Insert first distance value (m): "))
     vf = float(input("Insert final distance value (m): "))
     t1 = float(input("Insert corresponding(s) first time value (s): "))
     tf = float(input("Insert corresponding(s) final time value (s): "))
-    if checkRealCond(v1, vf) and checkRealCond(t1, tf):
+    if checkRealCond(t1, tf):
         s = (vf - v1) * (tf - t1)
         print("The distance traveled is: ~ " + str(specRound(s)) + " m")
+    else:
+        print("====Error: Time Value Negative.====")
 def Rtime():
     s1 = float(input("Insert first distance value (m): "))
     sf = float(input("Insert final distance value (m): "))
     v1 = float(input("Insert corresponding(s) first speed value (m/s): "))
     vf = float(input("Insert corresponding(s) final speed value (m/s): "))
-    if checkRealCond(s1, sf) and checkRealCond(v1, vf):
+    if v1<vf and s1<sf or v1>vf and s1>sf:
         t = (sf - s1) / (vf - v1)
         print("The time passed is: ~ " + str(specRound(t)) + " s")
-
+    else:
+        print("====Error: Time Value cannot be Negative.====")
+        
 #start
 while True: 
     slt = int(input("Select:\n[1] Range of values\n[2] Single values\n> "))
